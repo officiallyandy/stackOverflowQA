@@ -1,0 +1,13 @@
+.app {
+  text-align: center;
+}
+
+.appHeader {
+  background-color: #222;
+  padding: 15px;
+  color: white;
+}
+
+.appChildren {
+  padding: 15px;
+}

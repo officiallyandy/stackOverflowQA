@@ -1,0 +1,67 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "babel-core": "6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "6.2.9",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "6.18.0",
+    "babel-preset-stage-0": "^6.3.13",
+    "babel-runtime": "^6.20.0",
+    "css-loader": "0.26.1",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-css-modules": "^1.0.9",
+    "eslint-plugin-import": "^2.2.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "0.9.0",
+    "html-webpack-plugin": "^2.26.0",
+    "isomorphic-style-loader": "^1.1.0",
+    "node-sass": "^4.2.0",
+    "postcss-loader": "^1.2.2",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "0.13.1",
+    "url-loader": "0.5.7",
+    "webpack": "1.14.0",
+    "webpack-cleanup-plugin": "^0.4.1",
+    "webpack-dashboard": "^0.2.1",
+    "webpack-dev-server": "1.16.2"
+  },
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-ui-router": "^0.3.2"
+  },
+  "scripts": {
+    "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb",
+      "plugin:css-modules/recommended"
+    ],
+    "plugins": [
+      "css-modules"
+    ],
+    "globals": {
+      "__DEV__": true
+    },
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "arrow-parens": "off",
+      "comma-dangle": "off",
+      "generator-star-spacing": "off",
+      "global-require": "off",
+      "import/extensions": "off",
+      "import/no-extraneous-dependencies": "off"
+    }
+  }
+}
