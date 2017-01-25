@@ -7,6 +7,11 @@ module.exports = [
     loader: "babel"
   },
   {
+    test: /\.scss$/,
+    exclude: /(node_modules|bower_components)/,
+    loaders: ["style-loader", "css-loader", "sass-loader?config=otherSassLoaderConfig"]
+  },
+  {
     test: /\.css$/,
     loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!postcss-loader')
   },

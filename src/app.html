@@ -3,5 +3,18 @@
     <h2>Stack Overflow browser</h2>
   </div>
   <div class='appChildren'>
+    <!--{{ app.questions }}-->
+    <h3>Top Questions</h3>
+    <ul class="questions-container">
+      <li class="questions" ng-repeat="question in app.questions.data.items">
+        <div class="question-owner-profile">
+           <img src="{{ question.owner.profile_image }}">
+           <span> Owner: {{ question.owner.display_name }} </span>
+        </div>
+        <div class="question-info">
+          <h4>Title: {{ question.title }} </h4>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>

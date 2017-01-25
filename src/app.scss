@@ -1,0 +1,13 @@
+.questions-container {
+  text-align: left;
+
+  .questions {
+    .question-owner-profile {
+      $size: 75px; 
+      img { width: $size; height: $size; }
+
+      span { }
+    }
+    .question-info { float: right; }
+  }
+}

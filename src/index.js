@@ -1,6 +1,7 @@
 import angular from 'angular';
 import ngResource from 'angular-resource';
 import './app.css';
+import './app.scss';
 
 
 const app = () => {
@@ -53,7 +54,7 @@ const AppCtrl = function(stackOverflowDataService){
 
   function displayResults(results){
     console.log('questions query results: ', results);
-    vm.data = results;
+    vm.questions = results;
   }
 }
 
