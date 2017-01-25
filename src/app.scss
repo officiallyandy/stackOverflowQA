@@ -2,12 +2,17 @@
   text-align: left;
 
   .questions {
+    list-style: none; 
+    border: 1px solid #eee; 
+    padding: .5em 1em;
+    margin: .25em;
+
     .question-owner-profile {
       $size: 75px; 
-      img { width: $size; height: $size; }
 
-      span { }
+      img { width: $size; height: $size; border-radius: .5em; }
+      span { text-align: center; }
     }
-    .question-info { float: right; }
+    // .question-info { float: right; }
   }
 }

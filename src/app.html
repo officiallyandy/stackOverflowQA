@@ -7,13 +7,15 @@
     <h3>Top Questions</h3>
     <ul class="questions-container">
       <li class="questions" ng-repeat="question in app.questions.data.items">
-        <div class="question-owner-profile">
-           <img src="{{ question.owner.profile_image }}">
-           <span> Owner: {{ question.owner.display_name }} </span>
-        </div>
         <div class="question-info">
-          <h4>Title: {{ question.title }} </h4>
+          <h4>
+            <a href="">Title: {{ question.title }} </a>
+          </h4>
         </div>
+        <div class="question-owner-profile">
+           <img src="{{ question.owner.profile_image }}"> <br>
+           <span> {{ question.owner.display_name }} </span>
+        </div>        
       </li>
     </ul>
   </div>
