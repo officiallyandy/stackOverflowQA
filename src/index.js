@@ -14,17 +14,18 @@ const app = () => {
 
 const stackOverflowDao = function($http) {
   this.$inject = ['$http'];
-  const baseUrl = 'https://api.stackexchange.com/2.2/questions/featured?order=desc&sort=activity&site=stackoverflow';
+  // const baseUrl = 'https://api.stackexchange.com/2.2/questions/featured?order=desc&sort=activity&site=stackoverflow';
+  const baseUrl = 'https://api.stackexchange.com/2.2/questions/featured?page=';
 
   return { 
     getQuestions: getQuestions 
   };
 
 
-  function getQuestions(){
+  function getQuestions(pageNumber=1, pagesize=10, sortOrder='desc'){
     const request = {
       method: 'GET',
-      url: `${baseUrl}`,
+      url: `${baseUrl}${pageNumber}&pagesize=${pagesize}&order=${sortOrder}&sort=activity&site=stackoverflow`,
       headers: { 'Content-Type': 'application/json' }
     }
 

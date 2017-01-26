@@ -1,9 +1,11 @@
+$lightestColor: #F1ECDF;
+
 .questions-container {
   text-align: left;
 
   .questions {
     list-style: none; 
-    border: 1px solid #eee; 
+    border: 1px solid $lightestColor; 
     padding: .5em 1em;
     margin: .25em;
 
