@@ -1,20 +1,28 @@
-<div class='app'>
-  <div class='appHeader'>
+<div class="app">
+  <div class="appHeader">
     <h2>Stack Overflow browser</h2>
   </div>
-  <div class='appChildren'>
-    <!--{{ app.questions }}-->
+  <div class="appChildren">
     <h3>Top Questions</h3>
     <ul class="questions-container">
-      <li class="questions" ng-repeat="question in app.questions.data.items">
+      <li class="questions" ng-repeat="question in app.questions">
         <div class="question-info">
           <h4>
-            <a href="">Title: {{ question.title }} </a>
+            <a href="" ng-bind-html="question.title | unsafe">  </a>
           </h4>
         </div>
         <div class="question-owner-profile">
            <img src="{{ question.owner.profile_image }}"> <br>
-           <span> {{ question.owner.display_name }} </span>
+           <span> {{ question.owner.display_name }} </span> <br>
+
+           <small> 
+             Answer count: {{ question.answer_count }}  
+           </small>
+           <br>
+
+           <small> 
+            View count: {{ question.view_count }} 
+           </small>           
         </div>        
       </li>
     </ul>
