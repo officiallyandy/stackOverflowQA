@@ -4,21 +4,33 @@ $middleColor: #C7BA99;
 $darkerColor: #000;
 $closingColor: #F58723;
 
+body {
+  background: $lightColor;
+}
+
 .questions-container {
   text-align: left;
 
   .questions {
     list-style: none; 
-    border: 1px solid $lightestColor; 
+    border: 1px solid $darkerColor; 
     padding: .5em 1em;
     margin: .25em;
+    background: $lightestColor;
 
     .question-owner-profile {
       $size: 75px; 
 
-      img { width: $size; height: $size; border-radius: .5em; }
-      span { text-align: center; }
+      img { 
+        width: $size; 
+        height: $size; 
+        border-radius: .5em; 
+        border: 1px solid $lightColor; 
+      }
+      .owner-name { text-align: center; font-weight: bold; font-size: .9em; }
     }
-    // .question-info { float: right; }
+    .question-title {  
+      a, a:visited { color: $closingColor; text-decoration: none; } 
+    }
   }
 }

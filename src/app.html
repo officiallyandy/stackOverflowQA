@@ -7,13 +7,13 @@
     <ul class="questions-container">
       <li class="questions" ng-repeat="question in app.questions">
         <div class="question-info">
-          <h4>
+          <h3 class="question-title">
             <a href="" ng-bind-html="question.title | unsafe">  </a>
-          </h4>
+          </h3>
         </div>
         <div class="question-owner-profile">
            <img src="{{ question.owner.profile_image }}"> <br>
-           <span> {{ question.owner.display_name }} </span> <br>
+           <span class="owner-name" ng-bind-html="question.owner.display_name | unsafe">  </span> <br>
 
            <small> 
              Answer count: {{ question.answer_count }}  
