@@ -23,7 +23,15 @@
            <small> 
             View count: {{ question.view_count }} 
            </small>           
-        </div>        
+        </div> 
+        <p>
+          <button ng-click="app.getAnswersForQuestion(question.question_id)">Get Answers</button>  
+          <ul>
+            <li ng-repeat="answer in vm.answers">
+              <span> {{ answer }}  </span>
+            </li>
+          </ul>
+        </p>       
       </li>
     </ul>
   </div>
