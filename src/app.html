@@ -26,9 +26,10 @@
         </div> 
         <p>
           <button ng-click="app.getAnswersForQuestion(question.question_id)">Get Answers</button>  
+
           <ul>
-            <li ng-repeat="answer in vm.answers">
-              <span> {{ answer }}  </span>
+            <li ng-repeat="answer in app.answers">
+              <pre ng-bind-html="answer.body | unsafe">  </pre>
             </li>
           </ul>
         </p>       

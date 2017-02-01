@@ -13,7 +13,7 @@ const app = () => {
 
 const stackOverflowDao = function($http) {
   this.$inject = ['$http'];
-  const baseUrl = 'https://api.stackexchange.com/2.2/questions';
+  const baseUrl = 'https://api.stackexchange.com/2.2';
 
   return { 
     getQuestions: getQuestions,
@@ -22,7 +22,7 @@ const stackOverflowDao = function($http) {
 
 
   function getQuestions(pageNumber=1, pagesize=10, sortOrder='desc'){
-    const queryUrl = `${baseUrl}/featured?page=${pageNumber}&pagesize=${pagesize}&order=${sortOrder}&sort=activity&site=stackoverflow`;
+    const queryUrl = `${baseUrl}/questions/featured?page=${pageNumber}&pagesize=${pagesize}&order=${sortOrder}&sort=activity&site=stackoverflow`;
     const request = {
       method: 'GET', url: queryUrl, headers: { 'Content-Type': 'application/json' }
     }
@@ -30,12 +30,39 @@ const stackOverflowDao = function($http) {
     return $http(request);
   }
   function getAnswersForQuestion(questionId){
-    const queryUrl = `${baseUrl}/${questionId}/answers?order=desc&sort=activity&site=stackoverflow`;
-    const request = {
-      method: 'GET', url: queryUrl, headers: { 'Content-Type': 'application/json' }
+    // TODO: Looks like these call backs aren't actually waiting for each promise to resolve... 
+
+    return getAnswersMetaDataForQuestions(questionId)
+            .then(getCompleteAnswersInfoForQuestion)
+            .then(filterToFirstAnswer);
+
+
+    function getAnswersMetaDataForQuestions(questionId){
+      const questionQueryUrl = `${baseUrl}/questions/${questionId}/answers?order=desc&sort=activity&site=stackoverflow`;
+      const questionsRequest = {
+        method: 'GET', url: questionQueryUrl, headers: { 'Content-Type': 'application/json' }
+      };
+
+      return $http(questionsRequest);
     }
 
-    return $http(request);
+    function getCompleteAnswersInfoForQuestion(questionAnswerResult){
+      console.log('question / answer meta info: ', questionAnswerResult);
+      
+      const metaData = questionAnswerResult.data.items;
+      const answerId = (metaData.length > 0) ? metaData[0].answer_id : 0;
+      const answerQueryUrl = `${baseUrl}/answers/${answerId}?order=desc&sort=activity&site=stackoverflow&filter=!9YdnSMKKT`;
+      const answersRequest = {
+        method: 'GET', url: answerQueryUrl, headers: { 'Content-Type': 'application/json' }
+      };
+
+      return $http(answersRequest);
+    }
+
+    function filterToFirstAnswer(answersResult){ 
+      // console.log(answersResult.data);
+      return answersResult.data.items[0]; 
+    }
   }
 };
 
@@ -91,7 +118,8 @@ const AppCtrl = function(stackOverflowDataService){
   function initialize(){
     stackOverflowDataService
       .getQuestionsWithAnswers()
-      .then(displayResults);
+      .then(displayResults)
+      .catch(oopsMyBad);
 
     function displayResults(results){
       console.log('questions query results: ', results);
@@ -102,12 +130,18 @@ const AppCtrl = function(stackOverflowDataService){
   function getAnswersForQuestion(questionId=0){
       stackOverflowDataService
         .getAnswersForQuestion(questionId)
-        .then(displayResults);
+        .then(displayResults)
+        .catch(oopsMyBad);
 
     function displayResults(results){
       console.log('answers for question query results: ', results);
       vm.answers = results;
     }  
+  }
+
+  function oopsMyBad(e){
+    console.log('Error: ', e);
+    alert('Error Occurred', e.toString());
   }
 };
 
