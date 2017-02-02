@@ -15,19 +15,15 @@
            <img src="{{ question.owner.profile_image }}"> <br>
            <span class="owner-name" ng-bind-html="question.owner.display_name | unsafe">  </span> <br>
 
-           <small> 
-             Answer count: {{ question.answer_count }}  
-           </small>
+           <small> Answer count: {{ question.answer_count }} </small>
            <br>
 
-           <small> 
-            View count: {{ question.view_count }} 
-           </small>           
+           <small> View count: {{ question.view_count }} </small>           
         </div> 
         <p>
           <button ng-click="app.getAnswersForQuestion(question.question_id)">Get Answers</button>  
-          <pre ng-if="question.question_id === app.answers.question_id" 
-              ng-bind-html="app.answers.body | unsafe">  
+          <pre  ng-if="question.question_id === app.answers.question_id" 
+                ng-bind-html="app.answers.body | unsafe">  
           </pre>
         </p>       
       </li>
