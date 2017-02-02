@@ -26,12 +26,9 @@
         </div> 
         <p>
           <button ng-click="app.getAnswersForQuestion(question.question_id)">Get Answers</button>  
-
-          <ul>
-            <li ng-repeat="answer in app.answers">
-              <pre ng-bind-html="answer.body | unsafe">  </pre>
-            </li>
-          </ul>
+          <pre ng-if="question.question_id === app.answers.question_id" 
+              ng-bind-html="app.answers.body | unsafe">  
+          </pre>
         </p>       
       </li>
     </ul>
