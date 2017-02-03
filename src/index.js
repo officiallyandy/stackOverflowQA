@@ -136,50 +136,6 @@ const AppCtrl = function($sce, stackOverflowDataService){
     function displayResults(results){
       console.log('answers for question query results: ', results);
       vm.answers = results;
-      vm.answers.body = `<p>You can do it like :</p>
-<p><div class=\"snippet\" data-lang=\"js\" data-hide=\"false\" data-console=\"true\" data-babel=\"false\">
-<div class=\"snippet-code\">
-<pre class=\"snippet-code-js lang-js prettyprint-override\"><code>(function($){
-  $(function(){
-    $(\"#RunCode\").click(function(e){
-      var FormData = [];
-      $(\"#form input.serialize\").each(function(){
-        var name = $(this).attr(\"name\");
-        name = name.split(\"[\")
-        var id = name[1].replace(\"]\", \"\");
-        name = name[0];
-        if(typeof FormData[id] == \"undefined\"){ FormData[id] = {}; }
-        FormData[id][name] = $(this).val();
-        console.log(name, id, $(this).val(), FormData);
-      });
-      var str = JSON.stringify(FormData);
-      alert(str);
-      
-      e.preventDefault();
-      return false;
-    });
-  });
-})(jQuery);</code></pre>
-<pre class=\"snippet-code-html lang-html prettyprint-override\"><code>&lt;script src=\"https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js\"&gt;&lt;/script&gt;
-&lt;form id=\"form\"&gt;
-    &lt;div&gt;
-    &lt;input class=\"serialize\" type=\"hidden\" name=\"id[0]\" value=\"1\"&gt;
-    &lt;input class=\"serialize\" name=\"quantity[0]\" min=\"0\" type=\"text\" value=\"10\" /&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-    &lt;input class=\"serialize\" type=\"hidden\" name=\"id[1]\" value=\"2\"&gt;
-    &lt;input class=\"serialize\" name=\"quantity[1]\" min=\"0\" type=\"text\" value=\"20\" /&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-    &lt;input class=\"serialize\" type=\"hidden\" name=\"id[2]\" value=\"3\"&gt;
-    &lt;input class=\"serialize\" name=\"quantity[2]\" min=\"0\" type=\"text\" value=\"30\" /&gt;
-    &lt;/div&gt;
-    &lt;input type=\"button\" id=\"RunCode\" value=\"Run Code\" /&gt;
-&lt;/form&gt;</code></pre>
-</div>
-</div>
-</p>`; 
-
     }  
   }
 
