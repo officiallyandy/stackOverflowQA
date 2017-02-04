@@ -21,9 +21,15 @@
            <small> View count: {{ question.view_count }} </small>           
         </div> 
         <p>
-          <button ng-click="app.getAnswersForQuestion(question.question_id)">Get Answers</button>  
-          <pre  ng-if="question.question_id === app.answers.question_id" 
-                ng-bind-html="app.answers.body | unsafe">  
+          <button ng-click="app.getAnswersForQuestion(question.question_id)" 
+                  ng-if="app.shouldShowAnswer(question.question_id, app.answers.question_id) === false">
+            Show Answer
+          </button>  
+          <button ng-click="app.getAnswersForQuestion(question.question_id)" 
+                  ng-if="app.shouldShowAnswer(question.question_id, app.answers.question_id)">
+            Hide Answer
+          </button>            
+          <pre  ng-if="app.shouldShowAnswer(question.question_id, app.answers.question_id)" ng-bind-html="app.answers.body | unsafe">  
           </pre>
         </p>       
       </li>

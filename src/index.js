@@ -60,7 +60,6 @@ const stackOverflowDao = function($http) {
     }
 
     function filterToFirstAnswer(answersResult){ 
-      // console.log(answersResult.data);
       return answersResult.data.items[0]; 
     }
   }
@@ -109,8 +108,10 @@ const AppCtrl = function($sce, stackOverflowDataService){
   this.$inject = ['$sce', 'stackOverflowDataService'];
   const vm = this;
 
+  vm.showAnswer = false;
   vm.initialize = initialize;
   vm.getAnswersForQuestion = getAnswersForQuestion;
+  vm.shouldShowAnswer = shouldShowAnswer;
 
   initialize();
  
@@ -134,14 +135,18 @@ const AppCtrl = function($sce, stackOverflowDataService){
         .catch(oopsMyBad);
 
     function displayResults(results){
-      console.log('answers for question query results: ', results);
       vm.answers = results;
+      vm.showAnswer = !vm.showAnswer;
     }  
   }
 
   function oopsMyBad(e){
     console.log('Error: ', e);
     alert('Error Occurred', e.toString());
+  }
+
+  function shouldShowAnswer(currentQuestionId, answerToQuestionId) {
+    return (vm.showAnswer && currentQuestionId === answerToQuestionId);
   }
 };
 
